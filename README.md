@@ -5,7 +5,9 @@ Learn React with Express and MySQL to build Backend and Database
 [React + NodeJS + SQL](https://www.youtube.com/watch?v=HPIjjFGYSJ4&t=1157s)
 
 ### Connect database error
-Error mag is "Client does not support authentication protocol requested by server"
+Error mag is `Client does not support authentication protocol requested by server`
+
 use this query
-`alter user 'USER'@'localhost' identified with mysql_native_password by 'PASSWORD'`
+
+``alter user 'USER'@'localhost' identified with mysql_native_password by 'PASSWORD'``
 

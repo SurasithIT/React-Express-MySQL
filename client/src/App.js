@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <h3>Customer</h3>
       <Customers />
+      <br />
       <Products />
     </div>
   );

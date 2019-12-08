@@ -3,7 +3,7 @@ const mysql = require("mysql");
 
 const app = express();
 
-var connection = mysql.createConnection({
+var con_StoreDB = mysql.createConnection({
   host: "localhost",
   port: "3306",
   user: "root",
@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
   insecureAuth: "true"
 });
 
-connection.connect((err, res) => {
+con_StoreDB.connect((err, res) => {
   if (err) {
     console.log(err);
   } else {
@@ -30,7 +30,7 @@ app.get("/api/customers", (req, res) => {
 });
 
 app.get("/api/products", (req, res) => {
-  connection.query("SELECT * FROM Product", (error, result) => {
+  con_StoreDB.query("SELECT * FROM Product", (error, result) => {
     if (error) {
       console.log(error);
     } else {

@@ -19,6 +19,7 @@ class Customers extends Component {
   render() {
     return (
       <div className="Customers">
+        <h3>Customers from ExpressJS Server</h3>
         <table>
           <thead>
             <tr>

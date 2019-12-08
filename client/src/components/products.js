@@ -18,7 +18,8 @@ class Products extends Component {
   }
   render() {
     return (
-      <div className="Customers">
+      <div className="Products">
+        <h3>Products from Store Database</h3>
         <table>
           <thead>
             <tr>

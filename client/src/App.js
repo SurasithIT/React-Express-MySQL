@@ -1,17 +1,19 @@
 import React from "react";
 import "./App.css";
-import Customers from "./components/customers";
-import Products from "./components/products";
-import Stores from "./components/stores";
+// import Customers from "./components/customers";
+// import Products from "./components/products";
+// import Stores from "./components/stores";
+import Invoice from "./components/invoice";
 
 function App() {
   return (
     <div className="App">
-      <Customers />
+      {/* <Customers />
       <br />
       <Products />
       <br />
-      <Stores />
+      <Stores /> */}
+      <Invoice />
     </div>
   );
 }

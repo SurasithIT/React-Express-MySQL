@@ -83,6 +83,20 @@ app.get("/api/invoices", (req, res) => {
   });
 });
 
+app.get("/api/invoices/:id", (req, res) => {
+  con_StoreDB.query(
+    `SELECT * FROM Invoice WHERE id='${req.params.id}'`,
+    (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(result);
+        return res.json(result);
+      }
+    }
+  );
+});
+
 app.get("/api/items", (req, res) => {
   con_StoreDB.query("SELECT * FROM Item", (error, result) => {
     if (error) {
@@ -139,10 +153,56 @@ app.get("/api/invoiceOfUsers", (req, res) => {
   });
 });
 
+// Get customer detail from KeepSlipDB by phone number
+app.get("/api/customers/:phoneNumber", (req, res) => {
+  con_KeepSlipDB.query(
+    `SELECT Username,Firstname,Lastname,Email,PhoneNumber FROM User WHERE PhoneNumber=${req.params.phoneNumber}`,
+    (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(result);
+        return res.json(result);
+      }
+    }
+  );
+});
+
+// Get Store detail from KeepSlipDB by StoreID and StoreBranchID
+app.get("/api/stores/:storeId/:storeBranchId", (req, res) => {
+  con_KeepSlipDB.query(
+    `SELECT Store_id, StoreName, StoreDetail, Branch_id, BranchName, BranchAddress FROM Store JOIN StoreBranch ON Store.id=StoreBranch.Store_id WHERE Store.id=${req.params.storeId} AND Store.id=${req.params.storeBranchId}`,
+    (error, result) => {
+      if (error) {
+        console.log(error);
+        // throw error;
+      } else {
+        console.log(result);
+        return res.json(result);
+      }
+    }
+  );
+});
+
 // Get all detail of invoice from Store DB
 app.get("/api/invoiceFromStore", (req, res) => {
   con_StoreDB.query(
     "SELECT Invoice.id, Item.ItemNumber, Product.ProductName, Product.Price, Product.WarrantyTime, Item.Quantity FROM Invoice JOIN Item ON Invoice.id=Item.Invoice_id JOIN Product ON Item.Product_id=Product.id",
+    (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(result);
+        return res.json(result);
+      }
+    }
+  );
+});
+
+// Get invoice detail from StoreDB by invoice ID
+app.get("/api/invoiceFromStore/:invoiceID", (req, res) => {
+  con_StoreDB.query(
+    `SELECT Invoice.id, Item.ItemNumber, Product.ProductName, Product.Price, Product.WarrantyTime, Item.Quantity FROM Invoice JOIN Item ON Invoice.id=Item.Invoice_id JOIN Product ON Item.Product_id=Product.id WHERE Invoice.id='${req.params.invoiceID}'`,
     (error, result) => {
       if (error) {
         console.log(error);

@@ -29,9 +29,9 @@ to solve this i must to use "CORS". (read from [Access to XMLHttpRequest at '…
 `var cors = require('cors')`
 `app.use(cors()) // Use this after the variable declaration`
 
-#### Todo Task
+### Todo Task
 
-##### Usecase Keep Slip into Blockchain
+#### Usecase Keep Slip into Blockchain
 
 - Connect to Blockchain and Smart Contract to save data
 - Redirect after insert data to database

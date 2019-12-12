@@ -33,8 +33,8 @@ to solve this i must to use "CORS". (read from [Access to XMLHttpRequest at '…
 
 ##### Usecase Keep Slip into Blockchain
 
-`Connect to Blockchain and Smart Contract to save data`
-`Redirect after insert data to database`
-`Catch Error`
-`Test`
-`Combine Code with Usecase Get data from Blockchain (Create new project)`
+- Connect to Blockchain and Smart Contract to save data
+- Redirect after insert data to database
+- Catch Error
+- Test
+- Combine Code with Usecase Get data from Blockchain (Create new project)

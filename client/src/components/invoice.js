@@ -50,8 +50,51 @@ export default class Invoice extends Component {
   };
 
   addInvoice = () => {
-    console.log("Add Invoice clicked!!");
-    console.log("สร้าง method post ใส่ข้อมูลลงใน DB");
+    var data = {
+      user_id: this.state.user.id,
+      store_id: this.state.storeId,
+      branch_id: this.state.branchId,
+      invoice_id: this.state.invoiceId,
+      KeepSlip_invoice_id: `S${this.state.storeId}B${this.state.branchId}I${this.state.invoiceId}`
+    };
+
+    const options = {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    };
+
+    fetch("http://localhost:5000/api/addInvoice", options)
+      .then(response => {
+        // console.log(request);
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong ...");
+        }
+      })
+      .then(data => console.log("data", data))
+      .catch(error => this.setState({ error }));
+
+    //   console.log("Data set", data);
+    //   fetch("/api/addInvoice", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: data
+    //   })
+    //     .then(body => console.log("bddd", body))
+    //     .then((res, err) => {
+    //       if (err) {
+    //         throw new Error("Bad response from server");
+    //       }
+    //       console.log("Res", res);
+    //     })
+    //     .then(data => {
+    //       console.log("Data", data);
+    //     });
   };
 
   handleChange = e => {

@@ -1,7 +1,12 @@
 const express = require("express");
-const mysql = require("mysql");
-
 const app = express();
+const mysql = require("mysql");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 var con_StoreDB = mysql.createConnection({
   host: "localhost",
@@ -156,7 +161,7 @@ app.get("/api/invoiceOfUsers", (req, res) => {
 // Get customer detail from KeepSlipDB by phone number
 app.get("/api/customers/:phoneNumber", (req, res) => {
   con_KeepSlipDB.query(
-    `SELECT Username,Firstname,Lastname,Email,PhoneNumber FROM User WHERE PhoneNumber=${req.params.phoneNumber}`,
+    `SELECT id,Username,Firstname,Lastname,Email,PhoneNumber FROM User WHERE PhoneNumber=${req.params.phoneNumber}`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -227,6 +232,31 @@ app.get("/api/invoiceFromKeepSlip", (req, res) => {
       }
     }
   );
+});
+
+app.post("/api/addInvoice", (req, res) => {
+  const {
+    user_id,
+    store_id,
+    branch_id,
+    invoice_id,
+    KeepSlip_invoice_id
+  } = req.body;
+  console.log("call add Invoice API");
+  console.log(req.body);
+  con_KeepSlipDB.query(
+    `INSERT INTO Invoice_of_User (User_id, StoreBranch_Store_id, StoreBranch_Branch_id, Invoice_id, KeepSlip_Invoice_id)
+    VALUES (${user_id}, ${store_id}, ${branch_id}, "${invoice_id}", "${KeepSlip_invoice_id}")`,
+    (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(result);
+      }
+    }
+  );
+  // res.send(req.body);
+  res.end();
 });
 
 const port = 5000;

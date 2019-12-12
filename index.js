@@ -58,6 +58,20 @@ app.get("/api/products", (req, res) => {
   });
 });
 
+app.get("/api/products/:id", (req, res) => {
+  con_StoreDB.query(
+    `SELECT * FROM Product WHERE id=${req.params.id}`,
+    (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(result);
+        return res.json(result);
+      }
+    }
+  );
+});
+
 app.get("/api/invoices", (req, res) => {
   con_StoreDB.query("SELECT * FROM Invoice", (error, result) => {
     if (error) {

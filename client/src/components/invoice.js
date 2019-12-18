@@ -107,12 +107,11 @@ export default class Invoice extends Component {
     return (
       <div>
         <h1>Keep your slip into Blockchain!!</h1>
-        <hr />
         <h3>{this.state.store.StoreName}</h3>
         <h4>{this.state.store.StoreDetail}</h4>
         <h4>Branch : {this.state.store.BranchName}</h4>
         <h4>{this.state.store.BranchAddress}</h4>
-        <hr />
+
         <h4>
           Add Invoice ID :{" "}
           <input
@@ -134,7 +133,7 @@ export default class Invoice extends Component {
           />{" "}
           <button onClick={this.getUser}>Get</button>
         </h4>
-        <hr />
+
         <h4>Invoice Information</h4>
         <h4>Invoice Id : {this.state.invoiceId}</h4>
         <table>
@@ -160,21 +159,15 @@ export default class Invoice extends Component {
           </tbody>
         </table>
 
-        <hr />
         <h4>User Information</h4>
         <p>
-          <b>Username : </b> {this.state.user.Username}
-        </p>
-        <p>
-          <b>Name : </b> {this.state.user.Firstname} {this.state.user.Lastname}
-        </p>
-        <p>
-          <b>Email : </b> {this.state.user.Email}
-        </p>
-        <p>
+          <b>Username : </b> {this.state.user.Username} <br />
+          <b>Name : </b> {this.state.user.Firstname} {this.state.user.Lastname}{" "}
+          <br />
+          <b>Email : </b> {this.state.user.Email} <br />
           <b>Phone number : </b> {this.state.user.PhoneNumber}
+          <br />
         </p>
-        <hr />
 
         <button onClick={this.addInvoice}>Add Invoice</button>
       </div>
